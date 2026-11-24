@@ -2,10 +2,69 @@ import { describe, expect, it } from "vitest";
 
 import {
   extractBillIdFromPath,
+  isBillDetailPage,
   isInterviewPage,
   isInterviewSection,
   isMainPage,
+  isWidePage,
+  shouldShowDifficultySelector,
 } from "./page-layout-utils";
+
+describe("isBillDetailPage", () => {
+  it("returns true for bill detail pages", () => {
+    expect(isBillDetailPage("/bills/abc-123")).toBe(true);
+    expect(isBillDetailPage("/preview/bills/abc-123")).toBe(true);
+  });
+
+  it("returns false for top and sub-pages", () => {
+    expect(isBillDetailPage("/")).toBe(false);
+    expect(isBillDetailPage("/bills")).toBe(false);
+    expect(isBillDetailPage("/bills/abc-123/interview")).toBe(false);
+  });
+});
+
+describe("isWidePage", () => {
+  it("returns true for top page in archive layout", () => {
+    expect(isWidePage("/", "archive")).toBe(true);
+  });
+
+  it("returns false for top page in bills layout", () => {
+    expect(isWidePage("/", "bills")).toBe(false);
+  });
+
+  it("returns false for sub-pages even in archive layout", () => {
+    expect(isWidePage("/questions", "archive")).toBe(false);
+    expect(isWidePage("/bills/abc-123", "archive")).toBe(false);
+    expect(isWidePage("/search", "archive")).toBe(false);
+  });
+});
+
+describe("shouldShowDifficultySelector", () => {
+  it("returns false when bills feature is disabled", () => {
+    expect(shouldShowDifficultySelector("/", "bills", false)).toBe(false);
+    expect(
+      shouldShowDifficultySelector("/bills/abc-123", "archive", false)
+    ).toBe(false);
+  });
+
+  it("hides on top page in archive layout but shows on bill detail", () => {
+    expect(shouldShowDifficultySelector("/", "archive", true)).toBe(false);
+    expect(
+      shouldShowDifficultySelector("/bills/abc-123", "archive", true)
+    ).toBe(true);
+    expect(shouldShowDifficultySelector("/questions", "archive", true)).toBe(
+      false
+    );
+  });
+
+  it("shows on both top page and bill detail in bills layout", () => {
+    expect(shouldShowDifficultySelector("/", "bills", true)).toBe(true);
+    expect(shouldShowDifficultySelector("/bills/abc-123", "bills", true)).toBe(
+      true
+    );
+    expect(shouldShowDifficultySelector("/search", "bills", true)).toBe(false);
+  });
+});
 
 describe("isMainPage", () => {
   it("returns true for the top page", () => {
