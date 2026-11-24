@@ -22,28 +22,28 @@
 
 ```bash
 # 1. worktreeを作成
-git worktree add ../mirai-gikai-local-worktree/<branch-name> -b <branch-name>
+git worktree add ../mirai-gikai-koge-worktree/<branch-name> -b <branch-name>
 
 # 2. settings.local.jsonをコピー（権限設定のため必須）
-mkdir -p ../mirai-gikai-local-worktree/<branch-name>/.claude
-cp .claude/settings.local.json ../mirai-gikai-local-worktree/<branch-name>/.claude/
+mkdir -p ../mirai-gikai-koge-worktree/<branch-name>/.claude
+cp .claude/settings.local.json ../mirai-gikai-koge-worktree/<branch-name>/.claude/
 
 # 3. .envをコピー（環境変数の引き継ぎ）
-cp .env ../mirai-gikai-local-worktree/<branch-name>/
+cp .env ../mirai-gikai-koge-worktree/<branch-name>/
 
 # 4. 依存パッケージをインストール
-cd ../mirai-gikai-local-worktree/<branch-name> && pnpm install --frozen-lockfile
+cd ../mirai-gikai-koge-worktree/<branch-name> && pnpm install --frozen-lockfile
 ```
 
 - **目的**: `main` ブランチを常にクリーンに保ち、作業の分離と並列作業を容易にする
-- **重要**: worktreeは必ずプロジェクト外（`../mirai-gikai-local-worktree/`）に作成すること。プロジェクト内（`.claude/worktrees/` 等）に作成するとBiomeが「nested root configuration」エラーを起こす。
+- **重要**: worktreeは必ずプロジェクト外（`../mirai-gikai-koge-worktree/`）に作成すること。プロジェクト内（`.claude/worktrees/` 等）に作成するとBiomeが「nested root configuration」エラーを起こす。
 
 ### Worktreeクリーンアップ（必須）
 PR作成・マージ完了後は、不要になったworktreeを速やかに削除すること。放置するとディスクを圧迫し、Biome等のツールがエラーを起こす原因になる。
 
 ```bash
 # 1. worktreeを削除
-git worktree remove ../mirai-gikai-local-worktree/<branch-name>
+git worktree remove ../mirai-gikai-koge-worktree/<branch-name>
 
 # 2. マージ済みブランチを削除
 git branch -d <branch-name>
@@ -61,7 +61,7 @@ gh pr create --base main ...
 ```
 
 > 通常の fork では `main` のまま変更不要です。複数の地域版を同じマシンで扱う場合のみ、
-> `../mirai-gikai-local-worktree/` を `../mirai-gikai-<地域>-worktree/` 等に変更してください。
+> `../mirai-gikai-koge-worktree/` を `../mirai-gikai-<地域>-worktree/` 等に変更してください。
 > 既存の別用途 fork に別ブランチで足した場合のみ、このファイル・`.github/workflows/`・`.claude/` 内の `main` をそのブランチ名に置き換えてください。
 
 ### セルフレビュー必須

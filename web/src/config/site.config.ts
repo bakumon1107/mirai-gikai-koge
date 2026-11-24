@@ -17,45 +17,46 @@ export const siteConfig = {
    * 独自のサービス名を使う場合はこの形式に限りません。
    * @see FORK_GUIDELINES.md 1. サービス名称
    */
-  siteName: "みらい議会＠サンプル市",
+  siteName: "みらい議会＠上毛町",
   siteDescription:
-    "サンプル市議会で今どんな議案が検討されているか、わかりやすく伝えるプラットフォームです",
+    "福岡県上毛町議会の定例会・議案の議決結果や一般質問をわかりやすく伝えるアーカイブプラットフォームです",
   /** 自治体名（例: "サンプル市" / "サンプル県" / "サンプル町"） */
-  cityName: "サンプル市",
+  cityName: "上毛町",
   /** 議会名（例: "サンプル市議会" / "サンプル県議会"） */
-  councilName: "サンプル市議会",
+  councilName: "上毛町議会",
   /**
    * 住民の呼称（例: "市民" / "県民" / "区民" / "町民"）
    * UI テキストや AI プロンプトから参照します。
    */
-  residentTerm: "市民",
+  residentTerm: "町民",
   /**
    * トップページの構成パターン
    * - "bills": 議案中心（Tier 2：議案のAI解説が揃っている自治体向け・既定）
    * - "archive": 議事録・活動中心（Tier 1 や議案本文が薄い自治体向け）
    */
-  homeLayout: "bills" as "bills" | "archive",
+  homeLayout: "archive" as "bills" | "archive",
   /** 首長の役職名（知事・市長・区長・町長・村長） */
-  executiveTitle: "市長",
+  executiveTitle: "町長",
   /** 首長の氏名（任意。空文字列なら executiveTitle のみを表示） */
   executiveName: "",
   /** 行政の呼称（県政・市政・区政・町政・村政）。テーマ・分類ラベルに使用 */
-  governmentTerm: "市政",
+  governmentTerm: "町政",
   /** 定例会の通常開催月（市区町村は [3, 6, 9, 12]、都道府県は [2, 6, 9, 12] 等） */
   regularSessionMonths: [3, 6, 9, 12] as readonly number[],
   keywords: [
-    "みらい議会＠サンプル市",
+    "みらい議会＠上毛町",
+    "上毛町",
+    "上毛町議会",
+    "福岡県",
+    "一般質問",
     "議案",
-    "サンプル市",
-    "市議会",
+    "議決結果",
     "地方政治",
-    "政策",
-    "解説",
   ],
-  councilBaseUrl: "https://www.example.lg.jp/",
+  councilBaseUrl: "https://www.town.koge.lg.jp/chosei/gikai/index.html",
   /** 議案・議決結果の一覧ページ */
-  councilBillsDetailUrl: "https://www.example.lg.jp/gikai/giketsu/",
-  twitterHashtag: "みらい議会サンプル市", // # なし
+  councilBillsDetailUrl: "https://www.town.koge.lg.jp/chosei/gikai/3558.html",
+  twitterHashtag: "みらい議会上毛町", // # なし
   /**
    * ★ このサイト自身のソースコード公開先リポジトリ URL
    *
@@ -72,7 +73,7 @@ export const siteConfig = {
    * @see FORK_GUIDELINES.md 6. ソースコード公開先へのリンクの表示
    * @see web/src/config/is-placeholder-url.ts 判定ロジック
    */
-  sourceCodeUrl: "" as string,
+  sourceCodeUrl: "https://github.com/bakumon1107/mirai-gikai-koge" as string,
   externalLinks: {
     /** ★ 誤り報告フォーム（本家のフォームを流用せず、自前のものを用意すること） */
     report: "",
@@ -111,7 +112,7 @@ export const siteConfig = {
     /** 問い合わせ先 URL（SNS アカウント・フォーム等） */
     contactUrl: "https://example.com/contact" as string,
     /** 利用規約の準拠法・管轄裁判所（第一審の専属的合意管轄） */
-    jurisdiction: "東京地方裁判所" as string,
+    jurisdiction: "福岡地方裁判所" as string,
     /**
      * 運営者の立場・利益相反の開示文。
      * 空文字列なら表示しません。
@@ -129,18 +130,18 @@ export const siteConfig = {
   features: {
     /** 議案一覧・議案詳細 */
     bills: true as boolean,
-    /** 会派別賛否の表示（会派が存在しない議会や可否のみ公開の自治体では false） */
-    showFactionStances: true as boolean,
+    /** 会派別賛否の表示（上毛町議会は全員無所属のため false） */
+    showFactionStances: false as boolean,
     /** 一般質問・代表質問アーカイブ */
     generalQuestions: true as boolean,
-    /** 委員会議事録アーカイブ */
-    committeeMinutes: true as boolean,
-    /** 首長記者会見アーカイブ */
-    pressConferences: true as boolean,
+    /** 委員会議事録アーカイブ（独立した委員会議事録がないため false） */
+    committeeMinutes: false as boolean,
+    /** 首長記者会見アーカイブ（町長定例記者会見の公開がないため false） */
+    pressConferences: false as boolean,
     /** 横断検索・テーマから探す */
     search: true as boolean,
     /** AIチャット機能（議案への質問・テキスト選択からの質問）*/
-    aiChat: true as boolean,
+    aiChat: false as boolean,
     /**
      * AIインタビュー機能（議案当事者へのヒアリング）
      *

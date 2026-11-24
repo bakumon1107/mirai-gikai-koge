@@ -4,7 +4,7 @@
 # working directory name when running `supabase init`.
 # fork 先では他地域版・本家と Docker コンテナ / ボリューム名が重複しないよう
 # "mirai-gikai-<地域>"（例: "mirai-gikai-shibuya"）に変更してください。
-project_id = "mirai-gikai-local"
+project_id = "mirai-gikai-koge"
 
 [api]
 enabled = true

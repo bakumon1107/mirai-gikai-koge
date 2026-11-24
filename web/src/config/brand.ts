@@ -15,14 +15,14 @@
  * @see FORK_GUIDELINES.md 4. カラーテーマの変更
  */
 export const brandColors = {
-  /** globals.css の --primary と一致させる */
-  primary: "#4f6d8c",
+  /** globals.css の --primary と一致させる（上毛町フォレストグリーン） */
+  primary: "#2f6b48",
   /** globals.css の --primary-accent と一致させる */
-  primaryAccent: "#37506b",
+  primaryAccent: "#214f34",
   /** globals.css の --color-mirai-gradient-start と一致させる */
-  gradientStart: "#9fc0d8",
+  gradientStart: "#9bc8a6",
   /** globals.css の --color-mirai-gradient-end と一致させる */
-  gradientEnd: "#cfe1ec",
+  gradientEnd: "#d6ead9",
 } as const;
 
 /** OGP 画像等で使うブランドグラデーション（CSS の linear-gradient 文字列） */
