@@ -105,26 +105,23 @@
   --color-mirai-progress-fill: #a9e89d;
 
   /*
-   * Gradient endpoints
-   * ★ 本家（team-mirai）と同じグラデーションは使用しないこと。
-   * 下記はニュートラルなプレースホルダーのため、fork 時に独自の配色へ変更する。
+   * Gradient endpoints（上毛町オリジナル：大平山・新緑フォレストグリーン系）
    * @see FORK_GUIDELINES.md 4. カラーテーマの変更
    */
-  --color-mirai-gradient-start: #9fc0d8;
-  --color-mirai-gradient-end: #cfe1ec;
+  --color-mirai-gradient-start: #9bc8a6;
+  --color-mirai-gradient-end: #d6ead9;
 
   /*
    * --- 議事録ベース UI（homeLayout: "archive"）用カラー・トークン（archive-*） ---
-   * 下記はニュートラルなプレースホルダー配色（スレートブルー系 --primary: #4f6d8c に調和）。
-   * fork 時に自地域のブランドカラーへ合わせて変更し、WCAG AA（4.5:1 以上）を満たす値に調整すること。
+   * 上毛町のフォレストグリーン配色（--primary: #2f6b48）に合わせて WCAG AA（4.5:1 以上）を満たす値に設定。
    */
-  --color-archive-accent: #37506b; /* リンク・強調文字・バー塗り（白比 8.4:1） */
-  --color-archive-accent-hover: #283c52; /* hover（白比 11.2:1） */
-  --color-archive-accent-deep: #24364a; /* 淡色面上の濃い文字 */
-  --color-archive-pill-bg: #d4e2ee; /* ナビ現在地・状態ピル背景 */
-  --color-archive-pill-text: #1f3347; /* pill-bg 上の文字（9.6:1） */
-  --color-archive-hero: #eaf1f7; /* ヒーロー面 */
-  --color-archive-surface-tint: #f2f6fa; /* サブ面・ホバー・「いまここ」 */
+  --color-archive-accent: #235337; /* リンク・強調文字・バー塗り（白比 8.7:1） */
+  --color-archive-accent-hover: #183d27; /* hover（白比 12.2:1） */
+  --color-archive-accent-deep: #153421; /* 淡色面上の濃い文字 */
+  --color-archive-pill-bg: #d7eadc; /* ナビ現在地・状態ピル背景 */
+  --color-archive-pill-text: #163a24; /* pill-bg 上の文字（10.1:1） */
+  --color-archive-hero: #eaf4ec; /* ヒーロー面 */
+  --color-archive-surface-tint: #f2f8f3; /* サブ面・ホバー・「いまここ」 */
   --color-archive-surface-sub: #f6f4ee; /* 定例会カード等（ベージュ寄り） */
   --color-archive-beige-text: #4a4336; /* mirai-surface-warm 上の文字 */
   --color-archive-coral-bg: #fde2d6; /* テーマタイル差し色（アイコン面） */
@@ -148,8 +145,8 @@
    * theme_color も合わせて更新すること。
    * @see FORK_GUIDELINES.md 4. カラーテーマの変更
    */
-  --primary: #4f6d8c;
-  --primary-accent: #37506b;
+  --primary: #2f6b48;
+  --primary-accent: #214f34;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);

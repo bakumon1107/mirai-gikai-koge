@@ -1,11 +1,11 @@
 {
-  "name": "みらい議会＠サンプル市",
-  "short_name": "みらい議会＠サンプル市",
-  "description": "サンプル市議会で今どんな議案が検討されているか、わかりやすく伝えるプラットフォーム",
+  "name": "みらい議会＠上毛町",
+  "short_name": "みらい議会＠上毛町",
+  "description": "福岡県上毛町議会の定例会・議案の議決結果や一般質問をわかりやすく伝えるアーカイブプラットフォーム",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#F7F4F0",
-  "theme_color": "#4f6d8c",
+  "theme_color": "#2f6b48",
   "orientation": "portrait-primary",
   "icons": [
     {

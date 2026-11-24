@@ -9,19 +9,18 @@
  */
 export const siteConfig = {
   /** 「みらい議会」の名称を使う場合は「みらい議会＠地域名」形式にすること */
-  siteName: "みらい議会＠サンプル市",
+  siteName: "みらい議会＠上毛町",
   /** 自治体名（例: "サンプル市" / "サンプル県" / "サンプル町"） */
-  cityName: "サンプル市",
+  cityName: "上毛町",
   /** 議会名（例: "サンプル市議会" / "サンプル県議会"） */
-  councilName: "サンプル市議会",
+  councilName: "上毛町議会",
   /** 住民の呼称（例: "市民" / "県民" / "区民" / "町民"）。AIプロンプトから参照する */
-  residentTerm: "市民",
-  councilBaseUrl: "https://www.example.lg.jp/",
-  councilBillsDetailUrl: "https://www.example.lg.jp/gikai/giketsu/",
+  residentTerm: "町民",
+  councilBaseUrl: "https://www.town.koge.lg.jp/chosei/gikai/index.html",
+  councilBillsDetailUrl: "https://www.town.koge.lg.jp/chosei/gikai/3558.html",
   /**
    * 会派名の例。AI情報収集のプロンプトで、会派名の表記ゆれを吸収するために使う。
-   * fork 先の議会で実際に使われている会派名を列挙すること。
+   * 上毛町議会は全員無所属（会派制なし）。
    */
-  councilFactionExamples:
-    "みらいサンプル市議会、サンプル市自由民主党議員団、サンプル市公明党議員団等",
+  councilFactionExamples: "無所属（上毛町議会は会派制なし）",
 } as const;
