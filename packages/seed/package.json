@@ -6,6 +6,7 @@
   "scripts": {
     "seed": "tsx main/run.ts",
     "seed:csv": "tsx csv/import-csv.ts",
+    "seed:koge:r8-01": "tsx koge/r8-01.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
