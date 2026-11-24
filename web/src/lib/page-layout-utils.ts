@@ -25,14 +25,18 @@ export function isMainPage(pathname: string): boolean {
 /**
  * 幅広レイアウトのページかどうかを判定。
  * MainLayout の max-w-[700px] を外し、ヘッダと同じ max-w-[1440px] まで使う。
+ *
+ * - homeLayout === "archive" では、インタビュー専用画面を除く全ページを幅広レイアウトに統一し、
+ *   トップと下層ページを行き来した際の横幅のガタつき・窮屈さをなくす。
+ *   （各下層ページの本文幅は <Container> の max-w-4xl / max-w-2xl 側で整える）
+ * - homeLayout === "bills" では従来の 700px カードレイアウトを維持する。
  */
 export function isWidePage(
   pathname: string,
   homeLayout: "bills" | "archive" = siteConfig.homeLayout
 ): boolean {
-  // archive レイアウト時のトップページは PC 全幅レイアウト
-  if (pathname === "/" && homeLayout === "archive") return true;
-  return false;
+  if (homeLayout !== "archive") return false;
+  return !isInterviewSection(pathname);
 }
 
 /**
