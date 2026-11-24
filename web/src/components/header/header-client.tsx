@@ -11,7 +11,10 @@ import { DifficultySelector } from "@/features/bill-difficulty/client/components
 import type { DifficultyLevelEnum } from "@/features/bill-difficulty/shared/types";
 import type { CouncilSession } from "@/features/council-sessions/shared/types";
 import { InterviewHeaderActions } from "@/features/interview-session/client/components/interview-header-actions";
-import { isInterviewPage, isMainPage } from "@/lib/page-layout-utils";
+import {
+  isInterviewPage,
+  shouldShowDifficultySelector,
+} from "@/lib/page-layout-utils";
 import { routes } from "@/lib/routes";
 import { HamburgerMenu } from "./hamburger-menu";
 
@@ -23,8 +26,7 @@ interface HeaderClientProps {
 export function HeaderClient({ difficultyLevel, sessions }: HeaderClientProps) {
   const pathname = usePathname();
   const isArchiveLayout = siteConfig.homeLayout === "archive";
-  const showDifficultySelector =
-    isMainPage(pathname) && siteConfig.features.bills;
+  const showDifficultySelector = shouldShowDifficultySelector(pathname);
   const showInterviewActions = isInterviewPage(pathname);
 
   return (

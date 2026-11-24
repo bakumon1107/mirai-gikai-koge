@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
-import { Lexend_Giga, Noto_Sans_JP } from "next/font/google";
+import { Lexend_Giga, Noto_Sans_JP, Zen_Maru_Gothic } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import { brandColors } from "@/config/brand";
 import { siteConfig } from "@/config/site.config";
@@ -17,6 +17,16 @@ const lexendGiga = Lexend_Giga({
   variable: "--font-lexend-giga",
   subsets: ["latin"],
   weight: ["400", "500", "700", "800", "900"],
+});
+
+/**
+ * 見出し用の丸ゴシック（homeLayout: "archive" の見出し・数字チップ・テーマ漢字用）。
+ * weight は 700 のみ。本文には使わず、.font-rounded を付けた見出し等に限定する。
+ */
+const zenMaruGothic = Zen_Maru_Gothic({
+  variable: "--font-zen-maru-gothic",
+  subsets: ["latin"],
+  weight: ["700"],
 });
 
 const isDev = process.env.NODE_ENV === "development";
@@ -80,7 +90,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${notoSansJP.variable} ${lexendGiga.variable} font-sans antialiased bg-mirai-surface-light`}
+        className={`${notoSansJP.variable} ${lexendGiga.variable} ${zenMaruGothic.variable} font-sans antialiased bg-mirai-surface-light`}
       >
         <NextTopLoader showSpinner={false} color={brandColors.primary} />
         {children}
