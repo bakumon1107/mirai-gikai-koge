@@ -24,18 +24,23 @@ describe("isBillDetailPage", () => {
 });
 
 describe("isWidePage", () => {
-  it("returns true for top page in archive layout", () => {
+  it("returns true for top and sub-pages in archive layout", () => {
     expect(isWidePage("/", "archive")).toBe(true);
+    expect(isWidePage("/questions", "archive")).toBe(true);
+    expect(isWidePage("/sessions/r8-03/bills", "archive")).toBe(true);
+    expect(isWidePage("/bills/abc-123", "archive")).toBe(true);
+    expect(isWidePage("/search", "archive")).toBe(true);
   });
 
-  it("returns false for top page in bills layout", () => {
+  it("returns false for interview pages even in archive layout", () => {
+    expect(isWidePage("/bills/abc-123/interview", "archive")).toBe(false);
+    expect(isWidePage("/bills/abc-123/interview/chat", "archive")).toBe(false);
+  });
+
+  it("returns false for all pages in bills layout", () => {
     expect(isWidePage("/", "bills")).toBe(false);
-  });
-
-  it("returns false for sub-pages even in archive layout", () => {
-    expect(isWidePage("/questions", "archive")).toBe(false);
-    expect(isWidePage("/bills/abc-123", "archive")).toBe(false);
-    expect(isWidePage("/search", "archive")).toBe(false);
+    expect(isWidePage("/questions", "bills")).toBe(false);
+    expect(isWidePage("/bills/abc-123", "bills")).toBe(false);
   });
 });
 

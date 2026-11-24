@@ -33,8 +33,16 @@ export async function BillDetailLayout({
     getPublicReportsByBillId(bill.id),
   ]);
 
+  const isArchiveLayout = siteConfig.homeLayout === "archive";
+
   return (
-    <div className="container mx-auto pb-8 max-w-4xl">
+    <div
+      className={
+        isArchiveLayout
+          ? "container mx-auto pt-6 pb-8 max-w-4xl"
+          : "container mx-auto pb-8 max-w-4xl"
+      }
+    >
       {/*
         テキスト選択機能とチャット連携の実装パターン:
         - BillContentはServer Componentのまま保持（SSRによる高速な初期レンダリング）

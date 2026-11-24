@@ -3,8 +3,10 @@ import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { siteConfig } from "@/config/site.config";
 import { getInterviewLPLink } from "@/features/interview-config/shared/utils/interview-links";
 import { routes } from "@/lib/routes";
+import { cn } from "@/lib/utils";
 import { formatDateWithDots } from "@/lib/utils/date";
 import { BillDetailShareButton } from "../../../client/components/bill-detail/bill-detail-share-button";
 import { BillStatusBadge } from "../../../client/components/bill-list/bill-status-badge";
@@ -28,8 +30,17 @@ export async function BillDetailHeader({
 
   const { shareUrl, shareMessage, thumbnailUrl } = await getBillShareData(bill);
 
+  const isArchiveLayout = siteConfig.homeLayout === "archive";
+
   return (
-    <div className="mb-8 bg-white rounded-b-4xl">
+    <div
+      className={cn(
+        "mb-8 bg-white",
+        isArchiveLayout
+          ? "mx-4 sm:mx-6 lg:mx-8 rounded-3xl overflow-hidden"
+          : "rounded-b-4xl"
+      )}
+    >
       {bill.thumbnail_url ? (
         <div className="relative w-full h-72 md:h-80">
           <Image
@@ -42,7 +53,7 @@ export async function BillDetailHeader({
           />
         </div>
       ) : (
-        <div className="w-full h-20 bg-white-100" />
+        !isArchiveLayout && <div className="w-full h-20 bg-white-100" />
       )}
 
       <div className="px-4 pt-8 mb-3">
