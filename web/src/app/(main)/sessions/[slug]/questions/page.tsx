@@ -57,7 +57,7 @@ export default async function SessionQuestionsPage({ params }: Props) {
         </Link>
       </div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-mirai-text">
+        <h1 className="font-rounded text-2xl font-bold text-mirai-text pc:text-3xl">
           {session.name}の代表質問・一般質問
         </h1>
         <p className="mt-2 text-sm text-mirai-text-secondary">

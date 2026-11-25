@@ -126,7 +126,9 @@ function TopicCard({
   style: typeof DEFAULT_STYLE;
 }) {
   return (
-    <div className={`rounded-xl border ${style.card} overflow-hidden`}>
+    <div
+      className={`flex h-full flex-col justify-between rounded-xl border ${style.card} overflow-hidden`}
+    >
       <div className="px-4 pt-4 pb-3">
         <div className="flex items-start gap-2 mb-2">
           <h3 className={`text-base font-bold ${style.text} flex-1`}>
@@ -176,7 +178,7 @@ function CategorySection({ group }: { group: TopicGroup }) {
         </div>
         <h2 className={`font-bold ${style.text}`}>{group.categoryLabel}</h2>
       </div>
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2 pc:grid-cols-3">
         {group.entries.map((entry, i) => (
           <TopicCard key={`${entry.title}-${i}`} entry={entry} style={style} />
         ))}
@@ -208,6 +210,34 @@ export function SessionTopicsView({ questions }: SessionTopicsViewProps) {
 
   return (
     <div className="flex flex-col gap-10">
+      <section className="rounded-[24px] bg-white p-4 pc:p-5 border border-archive-divider">
+        <div className="flex flex-wrap items-baseline justify-between gap-2 mb-3">
+          <h2 className="text-sm font-bold text-mirai-text">
+            登壇議員から見る（{questions.length}名）
+          </h2>
+          <span className="text-xs text-mirai-text-secondary">
+            議員名を選ぶと質疑のやり取り全文要約へ移動します
+          </span>
+        </div>
+        <ul className="flex flex-wrap gap-2">
+          {questions.map((q) => (
+            <li key={q.id}>
+              <Link
+                href={routes.questionDetail(q.id)}
+                className="inline-flex items-center gap-1.5 rounded-full bg-archive-surface-sub px-3.5 py-1.5 text-sm font-medium text-mirai-text hover:bg-archive-pill-bg hover:text-archive-pill-text transition-colors"
+              >
+                <span>{q.questioner_name} 議員</span>
+                {q.topics.length > 0 && (
+                  <span className="text-xs text-mirai-text-secondary">
+                    （{q.topics.length}件）
+                  </span>
+                )}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       {groups.map((group) => (
         <CategorySection key={group.categoryLabel} group={group} />
       ))}
