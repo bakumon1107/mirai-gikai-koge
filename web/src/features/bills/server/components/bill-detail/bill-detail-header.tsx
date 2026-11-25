@@ -37,7 +37,7 @@ export async function BillDetailHeader({
       className={cn(
         "mb-8 bg-white",
         isArchiveLayout
-          ? "mx-4 sm:mx-6 lg:mx-8 rounded-3xl overflow-hidden"
+          ? "rounded-[28px] overflow-hidden pc:px-4"
           : "rounded-b-4xl"
       )}
     >

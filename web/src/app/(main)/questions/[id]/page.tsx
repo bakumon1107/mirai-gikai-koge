@@ -60,7 +60,7 @@ export default async function GeneralQuestionDetailPage({ params }: Props) {
     : `${siteConfig.councilName} 公式サイトを見る`;
 
   return (
-    <Container className="py-8 max-w-2xl">
+    <Container className="py-8">
       <div className="mb-4">
         <Link
           href={backHref}
@@ -71,7 +71,7 @@ export default async function GeneralQuestionDetailPage({ params }: Props) {
         </Link>
       </div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-mirai-text">
+        <h1 className="font-rounded text-2xl font-bold text-mirai-text pc:text-3xl">
           {question.questioner_name} 議員
         </h1>
         <p className="mt-1 text-sm text-mirai-text-secondary">
@@ -83,13 +83,17 @@ export default async function GeneralQuestionDetailPage({ params }: Props) {
       </div>
 
       {question.summary && (
-        <p className="mb-6 text-mirai-text leading-relaxed">
+        <p className="mb-6 max-w-4xl text-mirai-text leading-relaxed">
           {question.summary}
         </p>
       )}
 
       {question.topics.length > 0 ? (
-        <QuestionChatView topics={question.topics} />
+        <div className="rounded-[28px] bg-white p-5 pc:p-9">
+          <div className="mx-auto max-w-3xl">
+            <QuestionChatView topics={question.topics} />
+          </div>
+        </div>
       ) : (
         <div className="rounded-2xl border border-mirai-border bg-white p-5 text-sm text-mirai-text-secondary leading-relaxed">
           論点の要約は現在準備中です。詳しい発言内容は下記の公式会議録をご確認ください。

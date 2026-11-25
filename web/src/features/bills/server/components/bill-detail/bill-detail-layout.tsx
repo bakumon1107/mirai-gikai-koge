@@ -35,14 +35,63 @@ export async function BillDetailLayout({
 
   const isArchiveLayout = siteConfig.homeLayout === "archive";
 
+  if (isArchiveLayout) {
+    return (
+      <Container className="pt-6 pb-10">
+        <BillDetailClient
+          bill={bill}
+          currentDifficulty={currentDifficulty}
+          hasInterviewConfig={interviewConfig != null}
+        >
+          <BillDetailHeader
+            bill={bill}
+            hasInterviewConfig={interviewConfig != null}
+            opinionCount={publicReportsResult.totalCount}
+          />
+          <div className="my-8">
+            <BillStatusProgress
+              status={bill.status}
+              statusNote={bill.status_note}
+            />
+          </div>
+
+          <BillContent bill={bill} />
+        </BillDetailClient>
+
+        {publicReportsResult.totalCount > 0 && (
+          <div className="my-8">
+            <BillInterviewOpinionsSection
+              billId={bill.id}
+              reports={publicReportsResult.reports}
+              totalCount={publicReportsResult.totalCount}
+            />
+          </div>
+        )}
+        {siteConfig.features.aiInterview && interviewConfig != null && (
+          <div className="my-8">
+            <InterviewLandingSection billId={bill.id} />
+          </div>
+        )}
+        {showStances && (
+          <div className="my-8">
+            <FactionStanceCard
+              stances={bill.faction_stances ?? []}
+              billStatus={bill.status}
+            />
+          </div>
+        )}
+        <div className="my-8">
+          <BillShareButtons bill={bill} />
+        </div>
+        <div className="my-8">
+          <BillDisclaimer />
+        </div>
+      </Container>
+    );
+  }
+
   return (
-    <div
-      className={
-        isArchiveLayout
-          ? "container mx-auto pt-6 pb-8 max-w-4xl"
-          : "container mx-auto pb-8 max-w-4xl"
-      }
-    >
+    <div className="container mx-auto pb-8 max-w-4xl">
       {/*
         テキスト選択機能とチャット連携の実装パターン:
         - BillContentはServer Componentのまま保持（SSRによる高速な初期レンダリング）

@@ -5,12 +5,14 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { siteConfig } from "@/config/site.config";
 import type {
   BillTag,
   BillWithContent,
   ComingSoonBill,
 } from "@/features/bills/shared/types";
 import { CompactBillCard } from "@/features/bills/client/components/bill-list/compact-bill-card";
+import { routes } from "@/lib/routes";
 
 type StatusFilterType = "all" | "approved" | "rejected" | "other";
 
@@ -124,6 +126,7 @@ export function BillListWithStatusFilter({
     { key: "other", label: "その他" },
   ];
 
+  const isArchiveLayout = siteConfig.homeLayout === "archive";
   const noResults =
     filteredBills.length === 0 && filteredComingSoon.length === 0;
 
@@ -186,10 +189,23 @@ export function BillListWithStatusFilter({
       ) : (
         <>
           {filteredBills.length > 0 && (
-            <div className="flex flex-col gap-3">
+            <div
+              className={
+                isArchiveLayout
+                  ? "grid gap-3 pc:grid-cols-2"
+                  : "flex flex-col gap-3"
+              }
+            >
               {filteredBills.map((bill) => (
-                <Link key={bill.id} href={`/bills/${bill.id}`}>
-                  <CompactBillCard bill={bill} />
+                <Link
+                  key={bill.id}
+                  href={routes.billDetail(bill.id)}
+                  className={isArchiveLayout ? "block" : undefined}
+                >
+                  <CompactBillCard
+                    bill={bill}
+                    className={isArchiveLayout ? "h-full" : undefined}
+                  />
                 </Link>
               ))}
             </div>
@@ -206,9 +222,22 @@ export function BillListWithStatusFilter({
                   順次掲載されていきます
                 </p>
               </div>
-              <div className="flex flex-col gap-3">
+              <div
+                className={
+                  isArchiveLayout
+                    ? "grid gap-3 pc:grid-cols-2"
+                    : "flex flex-col gap-3"
+                }
+              >
                 {filteredComingSoon.map((bill) => (
-                  <Card key={bill.id} className="border border-black">
+                  <Card
+                    key={bill.id}
+                    className={
+                      isArchiveLayout
+                        ? "border border-black h-full"
+                        : "border border-black"
+                    }
+                  >
                     <CardContent className="flex items-center justify-between py-4 px-5">
                       <div className="flex flex-col gap-1 min-w-0">
                         <h4 className="font-bold text-base text-black leading-tight">
