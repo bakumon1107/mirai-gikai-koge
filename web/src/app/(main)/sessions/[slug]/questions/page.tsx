@@ -1,4 +1,4 @@
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -47,13 +47,20 @@ export default async function SessionQuestionsPage({ params }: Props) {
 
   return (
     <Container className="py-8">
-      <div className="mb-4">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
         <Link
           href={routes.home()}
           className="inline-flex items-center gap-1 text-sm text-mirai-text-secondary hover:text-mirai-text"
         >
           <ChevronLeft className="w-4 h-4" />
           トップに戻る
+        </Link>
+        <Link
+          href={routes.sessions()}
+          className="inline-flex items-center gap-1 text-sm text-mirai-text-secondary hover:text-mirai-text"
+        >
+          過去の定例会一覧
+          <ChevronRight className="w-4 h-4" />
         </Link>
       </div>
       <div className="mb-6">

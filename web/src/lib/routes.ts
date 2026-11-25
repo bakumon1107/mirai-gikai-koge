@@ -13,6 +13,7 @@ export const routes = {
   privacy: () => "/privacy" as const,
 
   // ── 議案 ──────────────────────────────────────────
+  bills: () => "/bills" as const,
   billDetail: (billId: string) => `/bills/${billId}` as const,
   billOpinions: (billId: string) => `/bills/${billId}/opinions` as const,
 
