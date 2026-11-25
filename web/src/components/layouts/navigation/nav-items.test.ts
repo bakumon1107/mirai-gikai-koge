@@ -83,12 +83,15 @@ describe("isNavItemActive", () => {
     );
     const questions = items.find((i) => i.label === "質問");
     const bills = items.find((i) => i.label === "議案");
+    expect(bills?.href).toBe("/bills");
     expect(
       questions && isNavItemActive(questions, "/sessions/r8-09/questions")
     ).toBe(true);
     expect(bills && isNavItemActive(bills, "/sessions/r8-09/questions")).toBe(
       false
     );
+    expect(bills && isNavItemActive(bills, "/sessions")).toBe(false);
+    expect(bills && isNavItemActive(bills, "/bills")).toBe(true);
     expect(bills && isNavItemActive(bills, "/sessions/r8-09/bills")).toBe(true);
     expect(bills && isNavItemActive(bills, "/bills/bill-1")).toBe(true);
     expect(bills && isNavItemActive(bills, "/bills/bill-1/opinions")).toBe(

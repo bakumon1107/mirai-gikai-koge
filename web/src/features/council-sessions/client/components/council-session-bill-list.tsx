@@ -1,4 +1,4 @@
-import { ChevronLeft, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site.config";
@@ -34,13 +34,20 @@ export function CouncilSessionBillList({
     <div className="flex flex-col gap-6 pc:gap-8">
       {isArchiveLayout ? (
         <div>
-          <div className="mb-4">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
             <Link
               href={routes.home()}
               className="inline-flex items-center gap-1 text-sm text-mirai-text-secondary hover:text-mirai-text"
             >
               <ChevronLeft className="w-4 h-4" />
               トップに戻る
+            </Link>
+            <Link
+              href={routes.sessions()}
+              className="inline-flex items-center gap-1 text-sm text-mirai-text-secondary hover:text-mirai-text"
+            >
+              過去の定例会一覧
+              <ChevronRight className="w-4 h-4" />
             </Link>
           </div>
           <div className="flex flex-wrap items-baseline gap-3">

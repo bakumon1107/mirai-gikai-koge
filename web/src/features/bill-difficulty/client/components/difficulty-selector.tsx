@@ -1,7 +1,7 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import { useId, useState } from "react";
+import { useState } from "react";
 import { Switch } from "@/components/ui/switch";
 import { setDifficultyLevel } from "../../server/actions/set-difficulty-level";
 import {
@@ -27,7 +27,6 @@ export function DifficultySelector({
 }: DifficultySelectorProps) {
   const [selectedLevel, setSelectedLevel] =
     useState<DifficultyLevelEnum>(currentLevel);
-  const uniqueId = useId();
   const [isChanging, setIsChanging] = useState(false);
 
   // ページロード時にスクロール位置を復元
@@ -82,7 +81,6 @@ export function DifficultySelector({
         )}
       </span>
       <Switch
-        id={`${uniqueId}-difficulty-toggle`}
         checked={selectedLevel === "hard"}
         onCheckedChange={handleToggle}
         disabled={isChanging}
